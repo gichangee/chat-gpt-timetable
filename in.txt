@@ -1,0 +1,3 @@
+node.js 설치
+vscode 설치
+npm openai 설치
