@@ -1,4 +1,4 @@
-const apiKey = "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"
+const apiKey = "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"
 const { Configuration, OpenAIApi } = require("openai");
 
 
@@ -80,6 +80,7 @@ app.post('/timetableTell', async function (req, res)
           let timetable = completion.data.choices[0].message['content'];
           console.log(timetable);
           res.json({"assistant": timetable});
+          //res.send({timetable});
 });
 
 app.listen(3000)
