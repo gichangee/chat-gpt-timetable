@@ -1,4 +1,4 @@
-const apiKey = "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"
+const apiKey = "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"
 const { Configuration, OpenAIApi } = require("openai");
 
 
@@ -24,12 +24,15 @@ app.use(cors());
 
 //post 요청 받을 수 있게 만듬
 app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded( { extended: true })) // for parsing application/x-www-form-urlencoded
 
 // POST method route
 app.post('/timetableTell', async function (req, res) 
 {
-  
+        let {userMessages, assistantMessages}= req.body
+        console.log(userMessages);
+        console.log(assistantMessages);
+
         const completion = await openai.createChatCompletion(
           {
             model: "gpt-3.5-turbo",
@@ -78,7 +81,7 @@ app.post('/timetableTell', async function (req, res)
           });
 
           let timetable = completion.data.choices[0].message['content'];
-          console.log(timetable);
+          //console.log(timetable);
           res.json({"assistant": timetable});
           //res.send({timetable});
 });
