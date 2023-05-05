@@ -67,11 +67,34 @@
         .assistant {
             color: blue;
         }
+
+        .intro-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .intro-container img{
+            width:10%;
+            min-width: 300px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="chat-container">
+
+    <div id="intro" class="intro-container">
+        <h1>시간표를 만들어 드립니다.</h1>
+        <img src="images.jpg" alt="timetable">
+        <label for="Subject">과목</label>
+        <textarea id="Subject" rows="10" cols="50" placeholder="수강 과목을 적어주세요!"></textarea>
+        <button onclick="start()">시간표 만들기</button>
+
+    </div>
+
+
+    <div id="chat" class="chat-container" style="display: none;">
         <div class="chat-box">
             <div class="chat-message">
                 <p class="assistant">수강 과목을 알려주세요!</p>
@@ -88,6 +111,24 @@
 
         let userMessages= [];
         let assistantMessages= [];
+        let mySubject = ''
+
+
+        function start(){
+            const Subject = document.getElementById('Subject');
+            if(Subject ===''){
+                alert('수강과목을 입력해주세요');
+                return;
+            }
+            mySubject = Subject.value;
+            //console.log(mySubject);
+
+            document.getElementById("intro").style.display="none";
+            document.getElementById("chat").style.display="block";
+
+        
+        }
+
 
         const sendMessage = async () => {
             const chatInput = document.querySelector('.chat-input input');
@@ -109,7 +150,8 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    message: chatInput.value,
+                    mySubject : mySubject,
+                    //message: chatInput.value,
                     userMessages: userMessages,
                     assistantMessages: assistantMessages,
 

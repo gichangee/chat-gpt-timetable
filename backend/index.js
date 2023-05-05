@@ -1,4 +1,4 @@
-const apiKey = "your api key"
+const apiKey = "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"
 const { Configuration, OpenAIApi } = require("openai");
 
 
@@ -29,7 +29,7 @@ app.use(express.urlencoded( { extended: true })) // for parsing application/x-ww
 // POST method route
 app.post('/timetableTell', async function (req, res) 
 {
-        let {userMessages, assistantMessages}= req.body
+        let {mySubject, userMessages, assistantMessages}= req.body
         //console.log(userMessages);
         //console.log(assistantMessages);
 
@@ -73,6 +73,7 @@ app.post('/timetableTell', async function (req, res)
           {role: "assistant", content: "----------------------------------------------------------------------------"},
           {role: "assistant", content: "09:00-11:00 -             -              Basic Prog 2 Basic Prog 2   -"},
           {role: "assistant", content: "11:00-13:00 Math 1       Math 1         -              -             -"},
+          {role: "user", content: `The courses that I can register for are  ${mySubject}. `},
         ]
         
         while( userMessages.length != 0 || assistantMessages.length !=0)
