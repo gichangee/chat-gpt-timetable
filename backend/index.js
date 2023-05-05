@@ -59,7 +59,7 @@ app.post('/timetableTell', async function (req, res)
           {role: "assistant", content: "Time       Mon           Tue            Wed           Thu           Fri"},
           {role: "assistant", content: "----------------------------------------------------------------------------"},
           {role: "assistant", content: "09:00-18:00 -              -              -              -             -"},
-          {role: "user", content: "The courses that I can register for are 1 minute and a half of basic programming (9:00 am to 11:00 am on Monday, 9:00 am to 11:00 am on Tuesday) or 2 minutes and a half of basic programming (9:00 am to 11:00 am on Wednesday and 9:00 am on Thursday). ~11 a.m.)."},
+          {role: "user", content: "The courses that I can register for are  basic programming 1divisions (9:00 am to 11:00 am on Monday, 9:00 am to 11:00 am on Tuesday),basic programming 2divisions (9:00 am to 11:00 am on Wednesday, 9:00 am to 11:00 am on Thursday), math 1divisions (11:00 am to 13:00 pm on Monday, 11:00 am to 13:00 pm on Tuesday) . "},
           {role: "user", content: "If the names are the same, but the divisions are different, they cannot be placed in the same timetable."},
           {role: "user", content: "In other words, the above information shows a total of two timetables."},
           {role: "user", content: "show me these two timetables"},
