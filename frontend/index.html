@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat UI Screen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             margin: 0;
@@ -79,6 +80,9 @@
             width:10%;
             min-width: 300px;
         }
+        .loader{
+            font-size: 25px;
+        }
     </style>
 </head>
 
@@ -99,10 +103,16 @@
             <div class="chat-message">
                 <p class="assistant">수강 과목을 알려주세요!</p>
             </div>
+
         </div>
+
+        <div id="loader" class="loader" style="display: none;">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+        
         <div class="chat-input">
             <input type="text" placeholder="Type your message here...">
-            <button>Send</button>
+            <button id="btn" onclick="spinner()">Send</button>
         </div>
     </div>
     <script>
@@ -113,6 +123,10 @@
         let assistantMessages= [];
         let mySubject = ''
 
+
+        function spinner(){
+            document.getElementById('loader').style.display="block";
+        }
 
         function start(){
             const Subject = document.getElementById('Subject');
@@ -160,6 +174,7 @@
 
             const data = await response.json();
 
+            document.getElementById('loader').style.display="none";
             //assistantMessage 메시지 추가
             assistantMessages.push(data.assistant);
             
