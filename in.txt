@@ -11,3 +11,5 @@ express 검색후 vscode 터미널에 설치
 vscode 확장프로그램
 live server 설치
 
+npm i serverless-http
+

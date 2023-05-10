@@ -1,6 +1,6 @@
-const apiKey = "your api key"
+const apiKey = ""
+const serverless = require('serverless-http');
 const { Configuration, OpenAIApi } = require("openai");
-
 
 const express = require('express')
 var cors = require('cors')
@@ -14,12 +14,13 @@ const openai = new OpenAIApi(configuration);
 
 
 //cors 이슈 해결
-// let corsOptions = {
-//   origin: 'https://www.domain.com',
-//   credentials: true
-// }
+//해당 사이트 요청 아니면 거절
+let corsOptions = {
+  origin: 'https://chat-gpt-timetable.pages.dev/',
+  credentials: true
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 //post 요청 받을 수 있게 만듬
@@ -107,7 +108,8 @@ app.post('/timetableTell', async function (req, res)
           //res.send({timetable});
 });
 
-app.listen(3000)
+module.exports.handler=serverless(app);
+//app.listen(3000)
 
 
 
