@@ -158,9 +158,10 @@
             
             chatInput.value = '';
 
-            const response = await fetch('http://https://54d27qzknww4ebqn2whhxv7pkq0czlso.lambda-url.ap-northeast-2.on.aws/timetableTell', {
+            const response = await fetch('https://wb40upgwxa.execute-api.ap-northeast-2.amazonaws.com/prod/timetableTell', {
                 method: 'POST',
                 headers: {
+                    
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
