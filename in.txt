@@ -8,7 +8,7 @@ npm 사이트 들어가서
 openai 검색후 vscode 터미널에 설치 
 express 검색후 vscode 터미널에 설치 
 
-vscode 확장프로그램
+vscode 확장프로그램 
 live server 설치
 
 npm i serverless-http

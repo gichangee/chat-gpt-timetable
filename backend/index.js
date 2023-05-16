@@ -98,13 +98,28 @@ app.post('/timetableTell', async function (req, res)
         //console.log(messages);
         
         const maxRetries = 3;
-        
-
-        const completion = await openai.createChatCompletion(
-          {
+        let retries = 0;
+        let completion
+        while (retries < maxRetries) {
+          try {
+            completion = await openai.createChatCompletion({
               model: "gpt-3.5-turbo",
-              messages: messages 
-          });
+              messages: messages
+            });
+            break;
+          } catch (error) {
+              retries++;
+              console.log(error);
+              console.log(`Error fetching data, retrying (${retries}/${maxRetries})...`);
+          }
+        }
+
+
+        // const completion = await openai.createChatCompletion(
+        //   {
+        //       model: "gpt-3.5-turbo",
+        //       messages: messages 
+        //   });
 
           let timetable = completion.data.choices[0].message['content'];
           //console.log(timetable);
