@@ -120,6 +120,7 @@ app.post('/timetableTell', async function (req, res)
         //       model: "gpt-3.5-turbo",
         //       messages: messages 
         //   });
+        //
 
           let timetable = completion.data.choices[0].message['content'];
           //console.log(timetable);
