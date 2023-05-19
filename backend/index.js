@@ -184,7 +184,8 @@ app.post('/timetableTell', async function (req, res)
 module.exports.handler=serverless(app);
 //app.listen(3000)
 
-function markdownToHtml(input) {
+function markdownToHtml(input) 
+{
     // split the input into lines
     let lines = input.trim().split("\n");
 
@@ -218,17 +219,6 @@ function markdownToHtml(input) {
 
     return htmlTable;
 }
-
-// Example usage:
-let input = `
-| Time | Mon | Tue | Wed | Thu | Fri |
-|-----|-----|-----|-----|-----|-----|
-| 9:00-10:00 | Math | - | Math | - | - |
-| 10:00-11:00 | Math | - | Math | - | - |
-`;
-
-console.log(markdownToHtml(input));
-
 
 
 

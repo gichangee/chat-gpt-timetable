@@ -124,7 +124,7 @@
     <div id="intro" class="intro-container">
         <h1>시간표를 만들어 드립니다.</h1>
         <img src="images.jpg" alt="timetable">
-        <label for="Subject">과목</label>
+        <label for="Subject"></label>
         <p>시간표 작성 예시</p>
         <p>Group n: 과목이름(강의시간)</p>
         <p>Group 1: math(0900am to 1100am on mon, 0900am to 1100am on wed), math2(1300pm to 1500am on mon, 1300am to 1500am on wed)</p>
@@ -182,9 +182,10 @@
         }
 
      
-        function start(){
+        function start()
+        {
             const Subject = document.getElementById('Subject');
-            if(Subject ===''){
+            if(Subject.value.trim() ===''){
                 alert('수강과목을 입력해주세요');
                 return;
             }
