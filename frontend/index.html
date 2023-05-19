@@ -74,7 +74,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
         }
         .intro-container img{
             width:10%;
@@ -83,7 +82,7 @@
         .loader{
             font-size: 25px;
         }
-        .kakao-ad{ 
+        /* .kakao-ad{ 
             display: flex;
             justify-content: center; 
             align-items: center;
@@ -91,7 +90,32 @@
             min-width: 350px;
             min-height: 200px;
             background-color: red;
+        } */
+        table {
+            border-collapse: collapse;
+            width: 100%;
         }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .tt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Add this line to center-align the text within the container */
+        min-height: 300px; /* Adjust the minimum height to your desired value */
+        }
+
+     
     </style>
 </head>
 
@@ -101,6 +125,10 @@
         <h1>시간표를 만들어 드립니다.</h1>
         <img src="images.jpg" alt="timetable">
         <label for="Subject">과목</label>
+        <p>시간표 작성 예시</p>
+        <p>Group n: 과목이름(강의시간)</p>
+        <p>Group 1: math(0900am to 1100am on mon, 0900am to 1100am on wed), math2(1300pm to 1500am on mon, 1300am to 1500am on wed)</p>
+        <p>Group 2: Eng(0900am to 1100am on Tue, 0900am to 1100am on Fri)</p>
         <textarea id="Subject" rows="20" cols="100" placeholder="수강 과목을 적어주세요!"></textarea>
         <button onclick="start()">시간표 만들기</button>
 
@@ -110,7 +138,7 @@
     <div id="chat" class="chat-container" style="display: none;">
         <div class="chat-box">
             <div class="chat-message">
-                <p class="assistant">수강 과목을 알려주세요!</p>
+                <p class="assistant">send 버튼을 눌러주세요</p>
             </div>
 
         </div>
@@ -120,18 +148,26 @@
         </div>
         
         <div class="chat-input">
-            <input type="text" placeholder="Type your message here...">
+            <input type="text" placeholder="Type your message here..." value="show me">
             <button id="btn" onclick="spinner()">Send</button>
         </div>
     </div>
 
-    <div class="kakao-ad" >
+    <div id="tt" class="tt" style="display: none;">
+        <textarea id="tableInput" rows="5" cols="50"  placeholder="Paste table data here"></textarea>
+        <div><button onclick="generateTable()" >Generate Table</button></div>
+        <div id="tableContainer"></div>
+    </div>  
+
+    <!-- <div class="kakao-ad" >
         <ins class="kakao_ad_area" style="display:none;"
             data-ad-unit = "DAN-UJMbDuc8pMwYkYsO"
             data-ad-width = "320"
             data-ad-height = "100"></ins>
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-    </div>
+    </div> -->
+
+
     <script>
         const chatBox = document.querySelector('.chat-box');
 
@@ -145,6 +181,7 @@
             document.getElementById('loader').style.display="block";
         }
 
+     
         function start(){
             const Subject = document.getElementById('Subject');
             if(Subject ===''){
@@ -156,8 +193,7 @@
 
             document.getElementById("intro").style.display="none";
             document.getElementById("chat").style.display="block";
-
-        
+            document.getElementById("tt").style.display="block";
         }
 
 
@@ -204,6 +240,32 @@
         };
 
         document.querySelector('.chat-input button').addEventListener('click', sendMessage);
+
+        function generateTable() 
+        {
+
+            var input = document.getElementById('tableInput').value;
+            var rows = input.split('\n');
+            var table = document.createElement('table');
+            rows.forEach(function(rowText) 
+            {
+                var row = document.createElement('tr');
+                var cells = rowText.split('|');
+
+                cells.forEach(function(cellText) 
+                {
+                    var cell = document.createElement(row.tagName === 'TH' ? 'th' : 'td');
+                    cell.textContent = cellText.trim();
+                    row.appendChild(cell);
+                });
+                
+                    table.appendChild(row);
+            });
+
+            var container = document.getElementById('tableContainer');
+            container.innerHTML = '';
+            container.appendChild(table);
+        }
     </script>
 </body>
 

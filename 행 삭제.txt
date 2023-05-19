@@ -47,32 +47,21 @@ Schedule 1
 | Time | Mon | Tue | Wed | Thu | Fri |
 |09:00-10:00| Math 1 | - | Math 1 | - | - |
 |10:00-11:00| Math 1 | - | Math 1 | - | Science1 |
-|11:00-12:00| - | - | - | - | - |
-|12:00-13:00| - | - | - | - | - |
-|13:00-14:00| - | - | - | - | - |
-|14:00-15:00| - | - | - | - | - |
-|15:00-16:00| - | - | - | - | - |
-|16:00-17:00| - | - | - | - | - |
-|17:00-18:00| - | - | - | - | - |
+
 
 Schedule 2
 | Time | Mon | Tue | Wed | Thu | Fri |
 |09:00-10:00| - | Math 2 | - | Math 2 | - |
 |10:00-11:00| - | Math 2 | - | Math 2 | Science 1 |
-|11:00-12:00| - | - | - | - | - |
-|12:00-13:00| - | - | - | - | - |
-|13:00-14:00| - | - | - | - | - |
-|14:00-15:00| - | - | - | - | - |
-|15:00-16:00| - | - | - | - | - |
-|16:00-17:00| - | - | - | - | - |
-|17:00-18:00| - | - | - | - | - |
+
 
 Did you understand?
 
 ---------------------------------------------------------------------------------------------------------------------
 
-Yes, I understood your request. I will create multiple timetables based on the groups of subjects provided, ensuring that there are no time overlaps within a single timetable and every subject from each group is used to make at least one timetable. Please provide me with the groups and corresponding class times, and I will create the required timetables.
+Yes, I understand. You want me to create several potential timetables based on the information you provide about different groups of subjects. Each group contains one or more subjects with their respective class times. A timetable must include a subject from each group, and the subjects' class times must not overlap. In case of overlapping subjects within the same group, different timetables should be created accommodating each subject.
 
+You also noted that if a particular time slot does not contain any subject, it should not be included in the final output. Let's proceed with your specific information.
 ---------------------------------------------------------------------------------------------------------------------
 
 Group 1: Math1(9am to 11am on Mon and 9am to 11am on Wed), Math2(9am to 11am on Tue and 9am to 11am on Thu)
@@ -86,26 +75,18 @@ Timetable 1: Using Math1 from Group 1, Science 1 from Group 2, and Computer Visi
 | Time | Mon | Tue | Wed | Thu | Fri |
 |09:00-10:00| Math 1 | - | Math 1 | - | - |
 |10:00-11:00| Math 1 | - | Math 1 | - | Science1 |
-|11:00-12:00| - | - | - | - | - |
 |12:00-13:00| - | - | Computer Vision | - | - |
 |13:00-14:00| - | - | Computer Vision | - | - |
-|14:00-15:00| - | - | - | - | - |
 |15:00-16:00| Computer Vision | - | - | - | - |
-|16:00-17:00| - | - | - | - | - |
-|17:00-18:00| - | - | - | - | - |
 
 Timetable 2: Using Math2 from Group 1, Science 1 from Group 2, and Computer Vision from Group 3
 
 | Time | Mon | Tue | Wed | Thu | Fri |
 |09:00-10:00| - | Math 2 | - | Math 2 | - |
 |10:00-11:00| - | Math 2 | - | Math 2 | Science 1 |
-|11:00-12:00| - | - | - | - | - |
 |12:00-13:00| - | - | Computer Vision | - | - |
 |13:00-14:00| - | - | Computer Vision | - | - |
-|14:00-15:00| - | - | - | - | - |
 |15:00-16:00| Computer Vision | - | - | - | - |
-|16:00-17:00| - | - | - | - | - |
-|17:00-18:00| - | - | - | - | - |
 
 Please let me know if you need anything else.
 
