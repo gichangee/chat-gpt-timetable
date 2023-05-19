@@ -175,6 +175,7 @@ app.post('/timetableTell', async function (req, res)
         //
 
           let timetable = completion.data.choices[0].message['content'];
+          timetable=markdownToHtml(timetable);
           //console.log(timetable);
           res.json({"assistant": timetable});
           //res.send({timetable});
@@ -183,6 +184,50 @@ app.post('/timetableTell', async function (req, res)
 module.exports.handler=serverless(app);
 //app.listen(3000)
 
+function markdownToHtml(input) {
+    // split the input into lines
+    let lines = input.trim().split("\n");
+
+    // start creating the htmlTable string
+    let htmlTable = "<table>\n";
+
+    for (let line of lines) {
+        // Skip the line if it's just dashes
+        if (line.startsWith('|-----')) continue;
+
+        // Remove extra '|' at the start and end of the line
+        line = line.replace(/^\|/, "").replace(/\|$/, "");
+
+        // split the line into cells
+        let cells = line.split("|");
+
+        // create an htmlRow string, and figure out if it's a header or a regular row
+        let htmlRow = "  <tr>\n";
+        let rowType = line.includes('Time') ? 'th' : 'td';
+
+        for (let cell of cells) {
+            cell = cell.trim();  // remove any leading/trailing whitespace
+            htmlRow += `    <${rowType}>${cell}</${rowType}>\n`;  // add each cell to the htmlRow string
+        }
+
+        htmlRow += "  </tr>\n";
+        htmlTable += htmlRow;  // add the row to the table
+    }
+
+    htmlTable += "</table>";
+
+    return htmlTable;
+}
+
+// Example usage:
+let input = `
+| Time | Mon | Tue | Wed | Thu | Fri |
+|-----|-----|-----|-----|-----|-----|
+| 9:00-10:00 | Math | - | Math | - | - |
+| 10:00-11:00 | Math | - | Math | - | - |
+`;
+
+console.log(markdownToHtml(input));
 
 
 
