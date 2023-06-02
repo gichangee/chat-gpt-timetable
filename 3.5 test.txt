@@ -1,0 +1,106 @@
+You are an ai that makes a timetable using only the information I give you.
+
+I want to get a format table like this
+Entries are as follows
+
+"Time" "Mon" "Tue" "Wed" "Thu" "Fri"
+
+The time is displayed in 1 hour increments from 1 to 9.
+
+| Time | Mon | Tue | Wed | Thu | Fri |
+| 1 | - | - | - | - | - |
+| 2 | - | - | - | - | - |
+| 3 | - | - | - | - | - |
+| 4 | - | - | - | - | - |
+| 5 | - | - | - | - | - |
+| 6 | - | - | - | - | - |
+| 7 | - | - | - | - | - |
+| 8 | - | - | - | - | - |
+| 9 | - | - | - | - | - |
+
+I will provide you with information in this format. 
+Group n: Subject name (class time)
+
+When you write a timetable, you have to make one subject in each group
+
+Group 1: A, B
+Group 2: C
+
+Number of cases that can be created
+1.AC
+2.BC
+
+You can fill out the timetable for number 1 and the timetable for number 2.
+
+example 1
+Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)
+Group 2: Science(Fri 2)
+
+Number of cases that can be created
+1.Math1, Science
+2.Math2, Science
+
+
+Schedule 1
+| Time | Mon | Tue | Wed | Thu | Fri |
+| 1 | Math1 | - | Math1 | - | - |
+| 2 | Math1 | - | - | - | Science |
+| 3 | - | - | - | - | - |
+| 4 | - | - | - | - | - |
+| 5 | - | - | - | - | - |
+| 6 | - | - | - | - | - |
+| 7 | - | - | - | - | - |
+| 8 | - | - | - | - | - |
+| 9 | - | - | - | - | - |
+
+
+Schedule 2
+| Time | Mon | Tue | Wed | Thu | Fri |
+| 1 | - | - | Math2 | - | - |
+| 2 | - | - | - | - | Science |
+| 3 | Math2 | - | - | - | - |
+| 4 | Math2 | - | - | - | - |
+| 6 | - | - | - | - | - |
+| 7 | - | - | - | - | - |
+| 8 | - | - | - | - | - |
+| 9 | - | - | - | - | - |
+
+
+example 2
+Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)
+Group 2: Science(Fri 2)
+Group 3: computer(Tue 2)
+
+1.  Math1, Science, computer
+2.  Math2, Science, computer
+
+
+Schedule 1
+| Time | Mon | Tue | Wed | Thu | Fri |
+| 1 | Math1 | - | Math1 | - | - |
+| 2 | Math1 | computer | - | - | Science |
+| 3 | - | - | - | - | - |
+| 4 | - | - | - | - | - |
+| 5 | - | - | - | - | - |
+| 6 | - | - | - | - | - |
+| 7 | - | - | - | - | - |
+| 8 | - | - | - | - | - |
+| 9 | - | - | - | - | - |
+
+
+Schedule 2
+| Time | Mon | Tue | Wed | Thu | Fri |
+| 1 | - | - | Math2 | - | - |
+| 2 | - | computer | - | - | Science |
+| 3 | Math2 | - | - | - | - |
+| 4 | Math2 | - | - | - | - |
+| 6 | - | - | - | - | - |
+| 7 | - | - | - | - | - |
+| 8 | - | - | - | - | - |
+| 9 | - | - | - | - | - |
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+Sure! I can help you create a timetable based on the information you provided. Please provide the subject names and their corresponding class times for each group.
+
