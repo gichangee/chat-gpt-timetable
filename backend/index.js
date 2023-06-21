@@ -25,6 +25,9 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 
+
+
+
 //post 요청 받을 수 있게 만듬
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded( { extended: true })) // for parsing application/x-www-form-urlencoded
@@ -33,101 +36,12 @@ app.use(express.urlencoded( { extended: true })) // for parsing application/x-ww
 app.post('/timetableTell', async function (req, res) 
 {
         let {mySubject, userMessages, assistantMessages}= req.body
-        //console.log(userMessages);
-        //console.log(assistantMessages);
-
-
+        console.log(userMessages);
+        console.log(assistantMessages);
         let messages = [
-          {role: "system", content: "You are an ai that makes a timetable using only the information I give you."},
-          {role: "system", content: "I want to get a format table like this Entries are as follows 'Time' 'Mon' 'Tue' 'Wed' 'Thu' 'Fri'"},
-          {role: "system", content: "The time is displayed in 1 hour increments from 1 to 9."},
-          {role: "system", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "system", content: "| 1 | - | - | - | - | - |"},
-          {role: "system", content: "| 2 | - | - | - | - | - |"},
-          {role: "system", content: "| 3 | - | - | - | - | - |"},
-          {role: "system", content: "| 4 | - | - | - | - | - |"},
-          {role: "system", content: "| 5 | - | - | - | - | - |"},
-          {role: "system", content: "| 6 | - | - | - | - | - |"},
-          {role: "system", content: "| 7 | - | - | - | - | - |"},
-          {role: "system", content: "| 8 | - | - | - | - | - |"},
-          {role: "system", content: "| 9 | - | - | - | - | - |"},
-          {role: "system", content: "I will provide you with information in this format. Group n: Subject name (class time)"},
-          {role: "system", content: "When you write a timetable, you have to make one subject in each group"},
-          {role: "system", content: "Group 1: A, B"},
-          {role: "system", content: "Group 2: C"},
-          {role: "system", content: "Number of cases that can be created"},
-          {role: "system", content: "1.AC"},
-          {role: "system", content: "2.BC"},
-          {role: "system", content: "example 1"},
-          {role: "system", content: "Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)"},
-          {role: "system", content: "Group 2: Science(Fri 2)"},
-          {role: "system", content: "Number of cases that can be created"},
-          {role: "system", content: "1.Math1, Science"},
-          {role: "system", content: "2.Math2, Science"},
-          {role: "system", content: "Schedule 1"},
-          {role: "system", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "system", content: "| 1 | Math1 | - | Math1 | - | - |"},
-          {role: "system", content: "| 2 | Math1 | - | - | - | Science |"},
-          {role: "system", content: "| 3 | - | - | - | - | - |"},
-          {role: "system", content: "| 4 | - | - | - | - | - |"},
-          {role: "system", content: "| 5 | - | - | - | - | - |"},
-          {role: "system", content: "| 6 | - | - | - | - | - |"},
-          {role: "system", content: "| 7 | - | - | - | - | - |"},
-          {role: "system", content: "| 8 | - | - | - | - | - |"},
-          {role: "system", content: "| 9 | - | - | - | - | - |"},
-          {role: "system", content: "Schedule 2"},
-          {role: "system", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "system", content: "| 1 | - | - | Math2  | - | - |"},
-          {role: "system", content: "| 2 | - | - | - | - | Science  |"},
-          {role: "system", content: "| 3 | Math2  | - | - | - | - |"},
-          {role: "system", content: "| 4 | Math2  | - | - | - | - |"},
-          {role: "system", content: "| 5 | - | - | - | - | - |"},
-          {role: "system", content: "| 6 | - | - | - | - | - |"},
-          {role: "system", content: "| 7 | - | - | - | - | - |"},
-          {role: "system", content: "| 8 | - | - | - | - | - |"},
-          {role: "system", content: "| 9 | - | - | - | - | - |"},
-          {role: "system", content: "example 2"},
-          {role: "system", content: "Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)"},
-          {role: "system", content: "Group 2: Science(Fri 2)"},
-          {role: "system", content: "Group 3: Group 3: computer(Tue 2)"},
-          {role: "system", content: "Number of cases that can be created"},
-          {role: "system", content: "1.Math1, Science, computer"},
-          {role: "system", content: "2.Math2, Science, computer"},
-          {role: "system", content: "Schedule 1"},
-          {role: "system", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "system", content: "| 1 | Math1 | - | Math1 | - | - |"},
-          {role: "system", content: "| 2 | Math1 | computer  | - | - | Science |"},
-          {role: "system", content: "| 3 | - | - | - | - | - |"},
-          {role: "system", content: "| 4 | - | - | - | - | - |"},
-          {role: "system", content: "| 5 | - | - | - | - | - |"},
-          {role: "system", content: "| 6 | - | - | - | - | - |"},
-          {role: "system", content: "| 7 | - | - | - | - | - |"},
-          {role: "system", content: "| 8 | - | - | - | - | - |"},
-          {role: "system", content: "| 9 | - | - | - | - | - |"},
-          {role: "system", content: "Schedule 2"},
-          {role: "system", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "system", content: "| 1 | - | - | Math2  | - | - |"},
-          {role: "system", content: "| 2 | - | computer  | - | - | Science  |"},
-          {role: "system", content: "| 3 | Math2  | - | - | - | - |"},
-          {role: "system", content: "| 4 | Math2  | - | - | - | - |"},
-          {role: "system", content: "| 5 | - | - | - | - | - |"},
-          {role: "system", content: "| 6 | - | - | - | - | - |"},
-          {role: "system", content: "| 7 | - | - | - | - | - |"},
-          {role: "system", content: "| 8 | - | - | - | - | - |"},
-          {role: "system", content: "| 9 | - | - | - | - | - |"},
           {role: "user", content: "You are an ai that makes a timetable using only the information I give you."},
           {role: "user", content: "I want to get a format table like this Entries are as follows 'Time' 'Mon' 'Tue' 'Wed' 'Thu' 'Fri'"},
           {role: "user", content: "The time is displayed in 1 hour increments from 1 to 9."},
-          {role: "user", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
-          {role: "user", content: "| 1 | - | - | - | - | - |"},
-          {role: "user", content: "| 2 | - | - | - | - | - |"},
-          {role: "user", content: "| 3 | - | - | - | - | - |"},
-          {role: "user", content: "| 4 | - | - | - | - | - |"},
-          {role: "user", content: "| 5 | - | - | - | - | - |"},
-          {role: "user", content: "| 6 | - | - | - | - | - |"},
-          {role: "user", content: "| 7 | - | - | - | - | - |"},
-          {role: "user", content: "| 8 | - | - | - | - | - |"},
-          {role: "user", content: "| 9 | - | - | - | - | - |"},
           {role: "user", content: "I will provide you with information in this format. Group n: Subject name (class time)"},
           {role: "user", content: "When you write a timetable, you have to make one subject in each group"},
           {role: "user", content: "Group 1: A, B"},
@@ -135,6 +49,7 @@ app.post('/timetableTell', async function (req, res)
           {role: "user", content: "Number of cases that can be created"},
           {role: "user", content: "1.AC"},
           {role: "user", content: "2.BC"},
+          {role: "user", content: "You can fill out the timetable for number 1 and the timetable for number 2."},
           {role: "user", content: "example 1"},
           {role: "user", content: "Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)"},
           {role: "user", content: "Group 2: Science(Fri 2)"},
@@ -192,7 +107,33 @@ app.post('/timetableTell', async function (req, res)
           {role: "user", content: "| 7 | - | - | - | - | - |"},
           {role: "user", content: "| 8 | - | - | - | - | - |"},
           {role: "user", content: "| 9 | - | - | - | - | - |"},
-          {role: "assistant", content:"Sure! I can help you create a timetable based on the information you provided. Please provide the subject names and their corresponding class times for each group."},
+          {role: "user", content: "If you understand, please make a timetable with this information"},
+          {role: "user", content: "Group 1: Math1 (Mon 1, Mon 2, Wen 1), Math2 (Mon 3, Mon 4, Wen 1)"},
+          {role: "user", content: "Group 2: Science(Fri 2)"},
+          {role: "assistant", content: "Thank you. Based on the information provided, here are two possible schedules that meet your requirements:"},
+          {role: "assistant", content: "Schedule 1:"},
+          {role: "assistant", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
+          {role: "assistant", content: "| 1 | Math1 | - | Math1 | - | - |"},
+          {role: "assistant", content: "| 2 | Math1 | -  | - | - | Science |"},
+          {role: "assistant", content: "| 3 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 4 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 5 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 6 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 7 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 8 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 9 | - | - | - | - | - |"},
+          {role: "assistant", content: "Schedule 2:"},
+          {role: "assistant", content: "| Time | Mon | Tue | Wed | Thu | Fri |"},
+          {role: "assistant", content: "| 1 | - | - | Math2  | - | - |"},
+          {role: "assistant", content: "| 2 | - | -  | - | - | Science  |"},
+          {role: "assistant", content: "| 3 | Math2  | - | - | - | - |"},
+          {role: "assistant", content: "| 4 | Math2  | - | - | - | - |"},
+          {role: "assistant", content: "| 5 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 6 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 7 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 8 | - | - | - | - | - |"},
+          {role: "assistant", content: "| 9 | - | - | - | - | - |"},
+          {role: "assistant", content: "In both schedules, each group has one subject assigned and they do not clash with each other."},
           {role: "user", content: `${mySubject}`},
         ]
         
@@ -214,7 +155,7 @@ app.post('/timetableTell', async function (req, res)
 
         //console.log(messages);
         
-        const maxRetries = 3;
+        const maxRetries = 30;
         let retries = 0;
         let completion
         while (retries < maxRetries) {
@@ -223,6 +164,7 @@ app.post('/timetableTell', async function (req, res)
               model: "gpt-3.5-turbo",
               //temperature:0.5,
               //model: "gpt-4",
+              max_tokens:1000,
               messages: messages
             });
             break;
@@ -240,6 +182,7 @@ app.post('/timetableTell', async function (req, res)
         //       messages: messages 
         //   });
         //
+
 
           let timetable = completion.data.choices[0].message['content'];
           timetable=markdownToHtml(timetable);
